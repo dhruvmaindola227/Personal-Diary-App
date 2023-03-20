@@ -1,4 +1,4 @@
-import 'package:diary_app/Screens/Login.dart';
+import 'package:diary_app/Screens/FirstPage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -38,16 +38,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int count = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      count++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return const LoginPage();
+    return const FirstPage();
   }
 }
