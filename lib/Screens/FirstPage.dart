@@ -48,7 +48,9 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   Widget createDialog(BuildContext context) => CupertinoAlertDialog(
-        title: const Text("Do you want to exit the application?"),
+        title: const Text("Do you want to exit the application?" , style: TextStyle(
+          color: Color.fromRGBO(255, 215, 0, 0.8),
+        ),),
         actions: [
           CupertinoDialogAction(
               onPressed: () {
@@ -56,7 +58,7 @@ class _FirstPageState extends State<FirstPage> {
               },
               child: const Text(
                 Constants.NO,
-                style: TextStyle(color: Color.fromRGBO(255, 215, 0, 0.8)),
+                style: TextStyle(color: Colors.white),
               )),
           CupertinoDialogAction(
               onPressed: () {
@@ -64,7 +66,7 @@ class _FirstPageState extends State<FirstPage> {
               },
               child: const Text(
                 Constants.YES,
-                style: TextStyle(color: Color.fromRGBO(255, 215, 0, 0.8)),
+                style: TextStyle(color: Colors.white),
               ))
         ],
       );
