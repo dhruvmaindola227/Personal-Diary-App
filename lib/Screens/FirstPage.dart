@@ -1,4 +1,5 @@
 import 'package:diary_app/Utils/Constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -30,58 +31,39 @@ class _FirstPageState extends State<FirstPage> {
           elevation: 0,
           backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
           leading: Padding(
-            padding: EdgeInsets.only(top: height * 0.01),
-            child: IconButton(
-              color: const Color.fromRGBO(255, 215, 0, 0.8),
-              icon: const Icon(Icons.arrow_back_ios),
-              onPressed: () => {
-                showDialog(
-                    context: context,
-                    builder: ((context) => AlertDialog(
-                          backgroundColor: Colors.grey.shade900,
-                          titleTextStyle: const TextStyle(
-                              color: Color.fromRGBO(255, 215, 0, 0.8),
-                              fontSize: 20),
-                          title: const Text(
-                              "Do you want to exit the application?"),
-                          content: Builder(builder: (context) {
-                            var iheight = MediaQuery.of(context).size.height;
-                            var iwidht = MediaQuery.of(context).size.width;
-                            print(iheight);
-                            return SizedBox(
-                              height: iheight - 778,
-                              width: 200,
-                            );
-                          }),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context, rootNavigator: true)
-                                      .pop('dialog');
-                                },
-                                child: const Text(
-                                  Constants.BACK,
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(255, 215, 0, 0.8)),
-                                )),
-                            TextButton(
-                                onPressed: () {
-                                  SystemNavigator
-                                      .pop(); // ** Close the entire application.
-                                },
-                                child: const Text(
-                                  Constants.YES,
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(255, 215, 0, 0.8)),
-                                ))
-                          ],
-                        )))
-              },
-            ),
-          ),
+              padding: EdgeInsets.only(top: height * 0.01),
+              child: IconButton(
+                  color: const Color.fromRGBO(255, 215, 0, 0.8),
+                  icon: const Icon(Icons.arrow_back_ios),
+                  onPressed: () => {
+                        showCupertinoDialog(
+                            context: context, builder: createDialog)
+                      })),
         ),
         body: Container(
           color: const Color.fromRGBO(0, 0, 0, 1),
         ));
   }
+
+  Widget createDialog(BuildContext context) => CupertinoAlertDialog(
+        title: const Text("Do you want to exit the application?"),
+        actions: [
+          CupertinoDialogAction(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop('dialog');
+              },
+              child: const Text(
+                Constants.BACK,
+                style: TextStyle(color: Color.fromRGBO(255, 215, 0, 0.8)),
+              )),
+          CupertinoDialogAction(
+              onPressed: () {
+                SystemNavigator.pop(); // ** Close the entire application.
+              },
+              child: const Text(
+                Constants.YES,
+                style: TextStyle(color: Color.fromRGBO(255, 215, 0, 0.8)),
+              ))
+        ],
+      );
 }
