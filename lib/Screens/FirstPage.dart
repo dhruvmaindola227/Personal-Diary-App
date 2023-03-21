@@ -1,5 +1,6 @@
 import 'package:diary_app/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -36,8 +37,9 @@ class _FirstPageState extends State<FirstPage> {
                   color: const Color.fromRGBO(255, 215, 0, 0.8),
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () => {
-                        showCupertinoDialog(
-                            context: context, builder: createDialog)
+                        showCupertinoModalPopup<void>(
+                            barrierDismissible: true,
+                            context: context, builder: createDialog),
                       })),
         ),
         body: Container(
@@ -53,7 +55,7 @@ class _FirstPageState extends State<FirstPage> {
                 Navigator.of(context, rootNavigator: true).pop('dialog');
               },
               child: const Text(
-                Constants.BACK,
+                Constants.NO,
                 style: TextStyle(color: Color.fromRGBO(255, 215, 0, 0.8)),
               )),
           CupertinoDialogAction(
